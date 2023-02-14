@@ -41,3 +41,37 @@ body {
 
 ## 第三方组件库
 依据组件库本身提供的主题切换方式来实现，如果组件本身使用的是css变量，则只需要将变量更新即可，如果组件库本身使用的是其他变量，可以通过自定义主题功能定制好之后放置本地
+
+## echart图表组件
+echart定制主题地址：https://echarts.apache.org/zh/theme-builder.html
+
+```
+import { registerTheme } from 'echarts';
+import darkTheme from './chartTheme/dark';
+import defaultTheme from './chartTheme/default';
+
+registerTheme(`chart_theme_dark`, darkTheme);
+registerTheme(`chart_theme_default`, defaultTheme);
+
+const ChartPage = forwardRef(({ theme, data }: props, ref) => {
+
+  return (
+  	<ReactECharts
+      ref={ref}
+      option={option}
+      notMerge={false}
+      theme={`chart_theme_${theme}`}
+    />
+  )
+})
+```
+
+主题示例 dark.ts
+```
+export const darkTheme = {
+	tooltip: {},
+  legend: {},
+  xAxis: {},
+  yAxis: {},
+}
+```
